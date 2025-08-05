@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>XV Años Yamileth</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #fff;
+      color: #333;
+    }
+
+    /* ENCABEZADO CON FOTO Y DEGRADADO */
+    .encabezado-con-foto {
+      position: relative;
+      height: 1700px;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+
+    .foto-fondo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .foto-fondo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+
+    .foto-fondo .degradado {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.2));
+      z-index: 1;
+    }
+
+    .contenido-titulo {
+      position: relative;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .contenido-titulo h1,
+    .contenido-titulo h2,
+    .contenido-titulo .fecha {
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    }
+
+    .contenido-titulo h1 {
+      font-size: 2.5em;
+    }
+
+    .contenido-titulo h2 {
+      font-size: 1.8em;
+    }
+
+    .contenido-titulo .fecha {
+      font-size: 1.2em;
+    }
+
+    /* Resto del estilo */
+    .temporizador {
+      background: #00674f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-weight: bold;
+    }
+
+    .temporizador div {
+      text-align: center;
+      font-size: 1.2em;
+    }
+
+    .reproductor-estilo {
+      text-align: center;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      background-color: #d4af37;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.8em;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .pulse {
+      animation: pulse-animation 1.5s infinite;
+    }
+
+    @keyframes pulse-animation {
+      0% { box-shadow: 0 0 0 0 rgba(0, 103, 79, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(0, 103, 79, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 103, 79, 0); }
+    }
+
+    .barra-progreso {
+      width: 70%;
+      height: 4px;
+      background: #f2e9da;
+      margin: 15px auto;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progreso {
+      height: 100%;
+      width: 0%;
+      background: #d4af37;
+      transition: width 0.3s;
+    }
+
+    .texto-audio {
+      font-size: 1em;
+      color: #a94444;
+      margin-top: 5px;
+    }
+
+    .visualizador-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    #visualizador {
+      background: #fffbe6;
+      border-radius: 10px;
+      border: 2px solid #d4af37;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .foto-destacada {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .foto-destacada img {
+      width: 60%;
+      max-width: 300px;
+      border: 5px solid #d4af37;
+      border-radius: 15px;
+    }
+
+    .agradecimiento {
+      background: #fffbe6;
+      color: #444;
+      font-size: 1.1em;
+      margin: 40px 20px;
+      padding: 20px;
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .familia {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .tarjeta {
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+      width: 250px;
+      box-shadow: 0 0 10px #ccc;
+      text-align: center;
+    }
+
+    .tarjeta h4 {
+      color: #00674f;
+      margin-bottom: 10px;
+    }
+
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .mapa iframe {
+      width: 90%;
+      height: 300px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ccc;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <header class="encabezado-con-foto">
+    <div class="foto-fondo">
+      <img src="yami1.jpeg" alt="Foto encabezado">
+      <div class="degradado"></div>
+    </div>
+    <div class="contenido-titulo">
+      <h1>Mis XV Años</h1>
+      <h2>Yamileth</h2>
+      <div class="fecha">23 de Agosto de 2025 - 2:00 PM</div>
+    </div>
+  </header>
+
+  <div class="temporizador" id="countdown">
+    <div><span id="dias">00</span><br>DÍAS</div>
+    <div><span id="horas">00</span><br>HORAS</div>
+    <div><span id="minutos">00</span><br>MINUTOS</div>
+    <div><span id="segundos">00</span><br>SEGUNDOS</div>
+  </div>
+
+  <div class="reproductor-estilo">
+    <button class="play-btn pulse" onclick="toggleAudio()">
+      <span id="icono-play">▶</span>
+    </button>
+    <div class="barra-progreso">
+      <div id="barra" class="progreso"></div>
+    </div>
+    <p class="texto-audio">“Golden Hour” - JVKE</p>
+    <audio id="audio" autoplay loop>
+  <source src="https://docs.google.com/uc?export=download&id=15M9FUmarpBspH9D7G9PlDO9Or96WEiAU" type="audio/mpeg">
+  Tu navegador no soporta audio HTML.
+</audio>
+
+
+  </div>
+
+  <div class="visualizador-container">
+    <canvas id="visualizador" width="600" height="80"></canvas>
+  </div>
+
+  <div class="foto-destacada">
+    <img src="yami2.jpeg" alt="Foto de Yamileth">
+  </div>
+
+  <div class="agradecimiento">
+    <p><strong>Hoy hace quince años</strong>, mis padres daban gracias a Dios por mi vida; hoy yo doy gracias a Dios por ellos, por cuidarme, aconsejarme y tenerme paciencia. Agradezco a toda mi familia por hacer de este día algo muy especial, y a mis amigos por enseñarme el verdadero valor de la amistad. ¡Gracias a todos por acompañarme en este día! ¡Que Dios los bendiga!</p>
+  </div>
+
+  <section class="familia">
+    <div class="tarjeta">
+      <h4>Padres</h4>
+      <p>Jose Nicolas Juarez Medina</p>
+      <p>Rosa Ahide Zavala Landon</p>
+    </div>
+    <div class="tarjeta">
+      <h4>Padrinos</h4>
+      <p>Moises Raul Zavala Landon</p>
+      <p>Mayra Maide Tienda Flores</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Mis Recuerdos</h3>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+      <img src="yami1.jpeg" alt="Foto 1" style="width: 30%; max-width: 200px; border-radius: 10px; border: 3px solid #d4af37;">
+      <img src="yami3.jpeg" alt="Foto 3" style="width: 30%; max-width: 200px; border-radius: 10px; border: 3px solid #d4af37;">
+      <img src="yami5.jpeg" alt="Foto 3" style="width: 30%; max-width: 200px; border-radius: 10px; border: 3px solid #d4af37;">
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Ceremonia</h3>
+    <p><strong>Lugar:</strong> Capilla de San José Texopa</p>
+    <p><strong>Dirección:</strong> Texopa, Texcoco, Estado de México</p>
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps?q=capilla+de+san+jose+texopa+texcoco&output=embed" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="margin-top: 40px;">Recepción</h3>
+ 
+    <p><strong>Dirección:</strong> Calle emiliano zapata s/n, Texopa, Texcoco, Estado de México</p>
+    <div class="mapa">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3760.055306626915!2d-98.86755412478291!3d19.539238981762995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTnCsDMyJzIxLjMiTiA5OMKwNTEnNTMuOSJX!5e0!3m2!1ses!2smx!4v1754253428971!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <button class="boton-confirmar" onclick="window.location.href='https://wa.me/52XXXXXXXXXX?text=Confirmo+mi+asistencia+a+los+XV+de+Yamileth'">
+    Confirmar Asistencia
+  </button>
+
+  <script>
+    const cuentaAtras = new Date("Aug 23, 2025 14:00:00").getTime();
+    const temporizador = setInterval(() => {
+      const ahora = new Date().getTime();
+      const diferencia = cuentaAtras - ahora;
+
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+      document.getElementById("dias").innerText = dias;
+      document.getElementById("horas").innerText = horas;
+      document.getElementById("minutos").innerText = minutos;
+      document.getElementById("segundos").innerText = segundos;
+
+      if (diferencia < 0) {
+        clearInterval(temporizador);
+        document.getElementById("countdown").innerHTML = "¡Ya comenzó la fiesta!";
+      }
+    }, 1000);
+
+    const audio = document.getElementById("audio");
+    const barra = document.getElementById("barra");
+    const icono = document.getElementById("icono-play");
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        icono.innerText = "⏸";
+      } else {
+        audio.pause();
+        icono.innerText = "▶";
+      }
+    }
+
+    audio.ontimeupdate = () => {
+      const porcentaje = (audio.currentTime / audio.duration) * 100;
+      barra.style.width = porcentaje + "%";
+    };
+
+    const canvas = document.getElementById("visualizador");
+    const ctx = canvas.getContext("2d");
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioCtx.createMediaElementSource(audio);
+    const analyser = audioCtx.createAnalyser();
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    analyser.fftSize = 256;
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+      requestAnimationFrame(draw);
+      analyser.getByteFrequencyData(dataArray);
+
+      ctx.fillStyle = "#fffbe6";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = (canvas.width / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i] / 2;
+        ctx.fillStyle = "#00674f";
+        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+        x += barWidth + 1;
+      }
+    }
+
+    audio.addEventListener("play", () => {
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      draw();
+    });
+  </script>
+</body>
+</html>
